@@ -1,17 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Panel de Control
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
+  <!-- <ion-header collapse="condense"> -->
+  <ion-header>
+      <ion-title color="light" size="large">Parcela del rey </ion-title>
   </ion-header>
+  <ion-list class="parcel-controls" >
+    <ion-item>
+      <ion-label>Activar riego</ion-label>
+      <ion-toggle color="primary"></ion-toggle>
+    </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-item>
+      <ion-label>Activar abono</ion-label>
+      <ion-toggle color="secondary"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
 </ion-content>

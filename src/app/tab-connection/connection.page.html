@@ -1,17 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Datos de la conexión
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row>
+    <ion-col class="connection-col">
+      <ion-thumbnail class="connection-image">
+        <img src="/assets/shapes.svg">
+      </ion-thumbnail>
+      <ion-text color="dark">
+        <h2 class="connection-host">Detalles de la parcela</h2>
+      </ion-text>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombre de dominio o IP</ion-label>
+          <ion-input color="primary" readonly="true">{{plot.host}}</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Puerto</ion-label>
+          <ion-input color="primary" readonly="true">{{plot.port}}</ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="connection-col">
+      <ion-list *ngFor="let channel of plot.channels">
+        <ion-item><ion-icon slot="start" name="leaf-outline"></ion-icon> <ion-label position="stacked">{{channel.name}}</ion-label></ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-footer>
+    <ion-toolbar class="connection-col">
+        <ion-button expand="block" color="primary" (click)="validateConnection()">
+          <ion-icon slot="icon-only" name="flash-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+ 
 </ion-content>

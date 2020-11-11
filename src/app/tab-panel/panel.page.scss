@@ -1,0 +1,27 @@
+ion-toolbar {
+    --background: rgb(0, 100, 42) !important;
+    --color: white;
+    text-align: center;
+}
+
+ion-content {
+  --background: #fff url("../../assets/sprinkler.svg") no-repeat center center / cover !important;
+  --padding-top: 16px;
+
+  .connection-col {
+    --ion-grid-column-padding: 0px;
+  }
+
+  .connection-image {
+    --size: 100px;
+    margin: auto;
+  }
+  
+  .parcel-controls {
+      justify-content: center;
+      display: flex!important;
+      flex-direction: column;
+      align-items: center!important;
+  }
+
+}
