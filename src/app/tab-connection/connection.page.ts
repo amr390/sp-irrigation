@@ -16,24 +16,24 @@ export class ConnectionPage {
 
   constructor(
     private connectionService: ConnectionService,
-    private alertController: AlertController) {
-    this.plot = new Plot(1, '192.168.18.122', 80);
-    this.plot.channels = [
-      new Channel(1, 'Parcela Norte (P1)'),
-      new Channel(2, 'Parcela Este (P2)'),
-      new Channel(1, 'Parcela Sur (P3)')
-    ];
+    private alertController: AlertController
+  ) {
+    this.plot = this.connectionService.getPlot();
   }
 
 
-  validateConnection() {
-    this.connectionService.checkStatus(this.plot).subscribe((success) => this.alertController.create({
-      cssClass: success ? 'alert-success' : 'alert-error',
-      header: 'Estado',
-      subHeader: 'Resultado de la prueba',
-      message: success ? 'Conexión establecida con éxito' : 'Fallo al establecer una conexión',
-      buttons: ['OK']
-    }));
+  async validateConnection() {
+    this.connectionService.checkStatus(this.plot).subscribe(async (success) => {
+      const alert = this.alertController.create({
+        cssClass: success ? 'alert-success' : 'alert-error',
+        header: success ? 'Correcto!!' : 'Fallo!!',
+        subHeader: success ? 'Prueba de conexión correcta' : 'La prueba de conexión falló',
+        message: success ? 'Conexión establecida con éxito' : 'Fallo al establecer una conexión',
+        buttons: ['OK']
+      });
+      (await alert).present();
+    }
+    );
   }
 
 }

@@ -7,20 +7,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense"> -->
-  <ion-header>
-      <ion-title color="light" size="large">Parcela del rey </ion-title>
-  </ion-header>
-  <ion-list class="parcel-controls" >
-    <ion-item>
-      <ion-label>Activar riego</ion-label>
-      <ion-toggle color="primary"></ion-toggle>
-    </ion-item>
+  <div *ngFor="let channel of plot.channels">
+    <!-- <ion-header collapse="condense"> -->
+    <ion-header>
+      <ion-title color="light" size="large">{{channel.name}} </ion-title>
+    </ion-header>
+    <ion-list class="parcel-controls">
+      <ion-item>
+        <ion-label>Activar riego</ion-label>
+        <ion-toggle [ngModel]="channel.irrigantion" (click)="toggleIrrigation($event, channel)" color="primary"></ion-toggle>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Activar abono</ion-label>
-      <ion-toggle color="secondary"></ion-toggle>
-    </ion-item>
+      <ion-item>
+        <ion-label>Activar abono</ion-label>
+        <ion-toggle [ngModel]="channel.fertilizer" (click)="toggleFertilizer($event, channel)" color="secondary"></ion-toggle>
+      </ion-item>
 
-  </ion-list>
+    </ion-list>
+  </div>
 </ion-content>

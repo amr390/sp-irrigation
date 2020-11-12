@@ -16,9 +16,13 @@ export class Plot{
 export class Channel {
     id: number;
     name: string;
+    irrigation: boolean;
+    fertilizer: boolean;
 
     constructor(id: number, name: string) {
         this.id = id;
         this.name = name;
+        this.irrigation = false;
+        this.fertilizer = false;
     }
 }
