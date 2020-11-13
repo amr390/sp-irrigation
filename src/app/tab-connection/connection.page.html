@@ -19,11 +19,11 @@
       <ion-list>
         <ion-item>
           <ion-label position="stacked">Nombre de dominio o IP</ion-label>
-          <ion-input color="primary" readonly="true">{{plot.host}}</ion-input>
+          <ion-input color="primary" [(ngModel)]="plot.host"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Puerto</ion-label>
-          <ion-input color="primary" readonly="true">{{plot.port}}</ion-input>
+          <ion-input color="primary" [(ngModel)]="plot.port"></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>

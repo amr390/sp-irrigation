@@ -1,5 +1,7 @@
 {
   "name": "sp-irrigation",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

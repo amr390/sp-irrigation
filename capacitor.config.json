@@ -1,0 +1,14 @@
+{
+  "appId": "sp-irrigation-0001",
+  "appName": "sp-irrigation",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "linuxAndroidStudioPath": "/home/amr/Apps/android-studio/bin/studio.sh"
+}
