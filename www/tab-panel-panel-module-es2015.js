@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Panel de Control\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <div *ngFor=\"let channel of plot.channels\">\n    <!-- <ion-header collapse=\"condense\"> -->\n    <ion-header>\n      <ion-title color=\"light\" size=\"large\">{{channel.name}} </ion-title>\n    </ion-header>\n    <ion-list class=\"parcel-controls\">\n      <ion-item>\n        <ion-label>Activar riego</ion-label>\n        <ion-toggle [ngModel]=\"channel.irrigantion\" (click)=\"toggleIrrigation($event, channel)\" color=\"primary\"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Activar abono</ion-label>\n        <ion-toggle [ngModel]=\"channel.fertilizer\" (click)=\"toggleFertilizer($event, channel)\" color=\"secondary\"></ion-toggle>\n      </ion-item>\n\n    </ion-list>\n  </div>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Panel de Control\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <div *ngFor=\"let channel of plot.channels\">\n    <!-- <ion-header collapse=\"condense\"> -->\n    <ion-header>\n      <ion-title color=\"light\" size=\"large\">{{channel.name}} </ion-title>\n    </ion-header>\n    <ion-list class=\"parcel-controls\">\n      <ion-item>\n        <ion-label>Activar riego</ion-label>\n        <ion-toggle [(ngModel)]=\"channel.irrigation\"  (checked)=\"channel.irrigation\" (ionChange)=\"toggleIrrigation(channel)\" color=\"primary\"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Activar abono</ion-label>\n        <ion-toggle [(ngModel)]=\"channel.fertilizer\"  (checked)=\"channel.fertilizer\" (ionChange)=\"toggleFertilizer(channel)\" color=\"secondary\"></ion-toggle>\n      </ion-item>\n\n    </ion-list>\n  </div>\n</ion-content>");
 
 /***/ }),
 
@@ -130,42 +130,38 @@ let PanelPage = class PanelPage {
     constructor(connectionService, alertController) {
         this.connectionService = connectionService;
         this.alertController = alertController;
-        this.plot = connectionService.getPlot();
+        this.plot = this.connectionService.getPlot();
     }
-    toggleIrrigation(e, channel) {
-        e.stopImmediatePropagation();
-        e.stopPropagation();
-        e.preventDefault();
+    toggleIrrigation(channel) {
+        console.log("toggleFertilizer");
         this.connectionService.toggleIrrigation(this.plot, channel).subscribe((success) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             channel.irrigation = success ? !channel.irrigation : channel.irrigation;
-            if (!success) {
-                const alert = this.alertController.create({
-                    cssClass: 'alert-error',
-                    header: 'Fallo!!',
-                    subHeader: 'Falló activar el riego',
-                    message: 'Falló activar el riego',
-                    buttons: ['OK']
-                });
-                (yield alert).present();
-            }
+            // if (!success) {
+            //   const alert = this.alertController.create({
+            //     cssClass: 'alert-error',
+            //     header: 'Fallo!!',
+            //     subHeader: 'Falló activar el riego',
+            //     message: 'Falló activar el riego',
+            //     buttons: ['OK']
+            //   });
+            //   (await alert).present();
+            // }
         }));
     }
-    toggleFertilizer(e, channel) {
-        e.stopImmediatePropagation();
-        e.stopPropagation();
-        e.preventDefault();
+    toggleFertilizer(channel) {
+        console.log("toggleFertilizer");
         this.connectionService.toggleFertilizer(this.plot, channel).subscribe((success) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             channel.fertilizer = success ? !channel.fertilizer : channel.fertilizer;
-            if (!success) {
-                const alert = this.alertController.create({
-                    cssClass: 'alert-error',
-                    header: 'Fallo!!',
-                    subHeader: 'Falló activar el abono',
-                    message: 'Falló activar el abono',
-                    buttons: ['OK']
-                });
-                (yield alert).present();
-            }
+            // if (!success) {
+            //   const alert = this.alertController.create({
+            //     cssClass: 'alert-error',
+            //     header: 'Fallo!!',
+            //     subHeader: 'Falló activar el abono',
+            //     message: 'Falló activar el abono',
+            //     buttons: ['OK']
+            //   });
+            //   (await alert).present();
+            // }
         }));
     }
 };

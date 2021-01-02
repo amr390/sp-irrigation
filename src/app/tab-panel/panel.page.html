@@ -15,12 +15,12 @@
     <ion-list class="parcel-controls">
       <ion-item>
         <ion-label>Activar riego</ion-label>
-        <ion-toggle [ngModel]="channel.irrigantion" (click)="toggleIrrigation($event, channel)" color="primary"></ion-toggle>
+        <ion-toggle [(ngModel)]="channel.irrigation"  (checked)="channel.irrigation" (ionChange)="toggleIrrigation(channel)" color="primary"></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>Activar abono</ion-label>
-        <ion-toggle [ngModel]="channel.fertilizer" (click)="toggleFertilizer($event, channel)" color="secondary"></ion-toggle>
+        <ion-toggle [(ngModel)]="channel.fertilizer"  (checked)="channel.fertilizer" (ionChange)="toggleFertilizer(channel)" color="secondary"></ion-toggle>
       </ion-item>
 
     </ion-list>

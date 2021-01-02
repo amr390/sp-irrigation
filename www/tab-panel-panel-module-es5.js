@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Panel de Control\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <div *ngFor=\"let channel of plot.channels\">\n    <!-- <ion-header collapse=\"condense\"> -->\n    <ion-header>\n      <ion-title color=\"light\" size=\"large\">{{channel.name}} </ion-title>\n    </ion-header>\n    <ion-list class=\"parcel-controls\">\n      <ion-item>\n        <ion-label>Activar riego</ion-label>\n        <ion-toggle [ngModel]=\"channel.irrigantion\" (click)=\"toggleIrrigation($event, channel)\" color=\"primary\"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Activar abono</ion-label>\n        <ion-toggle [ngModel]=\"channel.fertilizer\" (click)=\"toggleFertilizer($event, channel)\" color=\"secondary\"></ion-toggle>\n      </ion-item>\n\n    </ion-list>\n  </div>\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Panel de Control\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <div *ngFor=\"let channel of plot.channels\">\n    <!-- <ion-header collapse=\"condense\"> -->\n    <ion-header>\n      <ion-title color=\"light\" size=\"large\">{{channel.name}} </ion-title>\n    </ion-header>\n    <ion-list class=\"parcel-controls\">\n      <ion-item>\n        <ion-label>Activar riego</ion-label>\n        <ion-toggle [(ngModel)]=\"channel.irrigation\"  (checked)=\"channel.irrigation\" (ionChange)=\"toggleIrrigation(channel)\" color=\"primary\"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Activar abono</ion-label>\n        <ion-toggle [(ngModel)]=\"channel.fertilizer\"  (checked)=\"channel.fertilizer\" (ionChange)=\"toggleFertilizer(channel)\" color=\"secondary\"></ion-toggle>\n      </ion-item>\n\n    </ion-list>\n  </div>\n</ion-content>";
       /***/
     },
 
@@ -235,94 +235,70 @@
 
           this.connectionService = connectionService;
           this.alertController = alertController;
-          this.plot = connectionService.getPlot();
+          this.plot = this.connectionService.getPlot();
         }
 
         _createClass(PanelPage, [{
           key: "toggleIrrigation",
-          value: function toggleIrrigation(e, channel) {
+          value: function toggleIrrigation(channel) {
             var _this = this;
 
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            e.preventDefault();
+            console.log("toggleFertilizer");
             this.connectionService.toggleIrrigation(this.plot, channel).subscribe(function (success) {
               return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                var alert;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
-                        channel.irrigation = success ? !channel.irrigation : channel.irrigation;
+                        channel.irrigation = success ? !channel.irrigation : channel.irrigation; // if (!success) {
+                        //   const alert = this.alertController.create({
+                        //     cssClass: 'alert-error',
+                        //     header: 'Fallo!!',
+                        //     subHeader: 'Falló activar el riego',
+                        //     message: 'Falló activar el riego',
+                        //     buttons: ['OK']
+                        //   });
+                        //   (await alert).present();
+                        // }
 
-                        if (success) {
-                          _context.next = 6;
-                          break;
-                        }
-
-                        alert = this.alertController.create({
-                          cssClass: 'alert-error',
-                          header: 'Fallo!!',
-                          subHeader: 'Falló activar el riego',
-                          message: 'Falló activar el riego',
-                          buttons: ['OK']
-                        });
-                        _context.next = 5;
-                        return alert;
-
-                      case 5:
-                        _context.sent.present();
-
-                      case 6:
+                      case 1:
                       case "end":
                         return _context.stop();
                     }
                   }
-                }, _callee, this);
+                }, _callee);
               }));
             });
           }
         }, {
           key: "toggleFertilizer",
-          value: function toggleFertilizer(e, channel) {
+          value: function toggleFertilizer(channel) {
             var _this2 = this;
 
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            e.preventDefault();
+            console.log("toggleFertilizer");
             this.connectionService.toggleFertilizer(this.plot, channel).subscribe(function (success) {
               return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-                var alert;
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        channel.fertilizer = success ? !channel.fertilizer : channel.fertilizer;
+                        channel.fertilizer = success ? !channel.fertilizer : channel.fertilizer; // if (!success) {
+                        //   const alert = this.alertController.create({
+                        //     cssClass: 'alert-error',
+                        //     header: 'Fallo!!',
+                        //     subHeader: 'Falló activar el abono',
+                        //     message: 'Falló activar el abono',
+                        //     buttons: ['OK']
+                        //   });
+                        //   (await alert).present();
+                        // }
 
-                        if (success) {
-                          _context2.next = 6;
-                          break;
-                        }
-
-                        alert = this.alertController.create({
-                          cssClass: 'alert-error',
-                          header: 'Fallo!!',
-                          subHeader: 'Falló activar el abono',
-                          message: 'Falló activar el abono',
-                          buttons: ['OK']
-                        });
-                        _context2.next = 5;
-                        return alert;
-
-                      case 5:
-                        _context2.sent.present();
-
-                      case 6:
+                      case 1:
                       case "end":
                         return _context2.stop();
                     }
                   }
-                }, _callee2, this);
+                }, _callee2);
               }));
             });
           }

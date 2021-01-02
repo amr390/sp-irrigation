@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+ionic build --prod --release
+ionic cap sync
+ionic cap copy
+
+android/gradlew -b android/build.gradle
